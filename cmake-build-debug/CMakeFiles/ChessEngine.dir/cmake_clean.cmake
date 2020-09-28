@@ -1,11 +1,13 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ChessEngine.dir/chesslib/Piece.cpp.obj"
-  "CMakeFiles/ChessEngine.dir/chesslib/PieceType.cpp.obj"
   "CMakeFiles/ChessEngine.dir/main.cpp.obj"
+  "CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj"
+  "CMakeFiles/ChessEngine.dir/src/position.cpp.obj"
+  "CMakeFiles/ChessEngine.dir/src/tables.cpp.obj"
+  "CMakeFiles/ChessEngine.dir/src/types.cpp.obj"
   "ChessEngine.exe"
   "ChessEngine.exe.manifest"
+  "ChessEngine.lib"
   "ChessEngine.pdb"
-  "libChessEngine.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

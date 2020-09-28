@@ -1,6 +1,20 @@
-#include <iostream>
+#include "src/position.h"
+#include "src/tables.h"
+#include "src/types.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    initialise_all_databases();
+    zobrist::initialise_zobrist_keys();
+
+    Position p;
+    Position::set("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -", p);
+    std::cout << p;
+
+    MoveList<WHITE> list(p);
+
+    for(Move m : list) {
+        std::cout << m << "\n";
+    }
+
     return 0;
 }

@@ -1,1 +1,1 @@
-CMakeFiles/ChessEngine.dir/main.cpp.obj CMakeFiles/ChessEngine.dir/chesslib/Piece.cpp.obj CMakeFiles/ChessEngine.dir/chesslib/PieceType.cpp.obj
+CMakeFiles/ChessEngine.dir/main.cpp.obj CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj CMakeFiles/ChessEngine.dir/src/position.cpp.obj CMakeFiles/ChessEngine.dir/src/tables.cpp.obj CMakeFiles/ChessEngine.dir/src/types.cpp.obj

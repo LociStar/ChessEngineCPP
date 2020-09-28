@@ -4,11 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/LociStar/CLionProjects/ChessEngine/chesslib/Piece.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/chesslib/Piece.cpp.obj"
-  "C:/Users/LociStar/CLionProjects/ChessEngine/chesslib/PieceType.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/chesslib/PieceType.cpp.obj"
-  "C:/Users/LociStar/CLionProjects/ChessEngine/main.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/main.cpp.obj"
+  "C:/Users/locis/CLionProjects/ChessEngineCPP/main.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/main.cpp.obj"
+  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/chess_engine.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj"
+  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/position.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/position.cpp.obj"
+  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/tables.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/tables.cpp.obj"
+  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/types.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/types.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "MSVC")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

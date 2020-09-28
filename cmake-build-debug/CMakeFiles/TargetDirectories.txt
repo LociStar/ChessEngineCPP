@@ -1,3 +1,3 @@
-C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir
-C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir
+C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
