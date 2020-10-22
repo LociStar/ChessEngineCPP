@@ -4,11 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/locis/CLionProjects/ChessEngineCPP/main.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/main.cpp.obj"
-  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/chess_engine.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj"
-  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/position.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/position.cpp.obj"
-  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/tables.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/tables.cpp.obj"
-  "C:/Users/locis/CLionProjects/ChessEngineCPP/src/types.cpp" "C:/Users/locis/CLionProjects/ChessEngineCPP/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/types.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/UCI.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/UCI.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/engine.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/engine.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/main.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/main.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/positionTables.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/positionTables.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/src/LinkedListDoubly.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/LinkedListDoubly.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/src/chess_engine.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/src/position.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/position.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/src/tables.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/tables.cpp.obj"
+  "C:/Users/LociStar/CLionProjects/ChessEngine/src/types.cpp" "C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/CMakeFiles/ChessEngine.dir/src/types.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "MSVC")
 

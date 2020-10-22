@@ -43,19 +43,19 @@ NULL=nul
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\Users\locis\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe
+CMAKE_COMMAND = D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = C:\Users\locis\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E rm -f
+RM = D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\locis\CLionProjects\ChessEngineCPP
+CMAKE_SOURCE_DIR = C:\Users\LociStar\CLionProjects\ChessEngine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	C:\Users\locis\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
+	D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -74,7 +74,7 @@ edit_cache\fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	C:\Users\locis\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -84,9 +84,9 @@ rebuild_cache\fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 /nologo -$(MAKEFLAGS) all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -127,6 +127,60 @@ ChessEngine\fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\build
 .PHONY : ChessEngine\fast
 
+UCI.obj: UCI.cpp.obj
+
+.PHONY : UCI.obj
+
+# target to build an object file
+UCI.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\UCI.cpp.obj
+.PHONY : UCI.cpp.obj
+
+UCI.i: UCI.cpp.i
+
+.PHONY : UCI.i
+
+# target to preprocess a source file
+UCI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\UCI.cpp.i
+.PHONY : UCI.cpp.i
+
+UCI.s: UCI.cpp.s
+
+.PHONY : UCI.s
+
+# target to generate assembly for a file
+UCI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\UCI.cpp.s
+.PHONY : UCI.cpp.s
+
+engine.obj: engine.cpp.obj
+
+.PHONY : engine.obj
+
+# target to build an object file
+engine.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\engine.cpp.obj
+.PHONY : engine.cpp.obj
+
+engine.i: engine.cpp.i
+
+.PHONY : engine.i
+
+# target to preprocess a source file
+engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\engine.cpp.i
+.PHONY : engine.cpp.i
+
+engine.s: engine.cpp.s
+
+.PHONY : engine.s
+
+# target to generate assembly for a file
+engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\engine.cpp.s
+.PHONY : engine.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -153,6 +207,60 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\main.cpp.s
 .PHONY : main.cpp.s
+
+positionTables.obj: positionTables.cpp.obj
+
+.PHONY : positionTables.obj
+
+# target to build an object file
+positionTables.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\positionTables.cpp.obj
+.PHONY : positionTables.cpp.obj
+
+positionTables.i: positionTables.cpp.i
+
+.PHONY : positionTables.i
+
+# target to preprocess a source file
+positionTables.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\positionTables.cpp.i
+.PHONY : positionTables.cpp.i
+
+positionTables.s: positionTables.cpp.s
+
+.PHONY : positionTables.s
+
+# target to generate assembly for a file
+positionTables.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\positionTables.cpp.s
+.PHONY : positionTables.cpp.s
+
+src\LinkedListDoubly.obj: src\LinkedListDoubly.cpp.obj
+
+.PHONY : src\LinkedListDoubly.obj
+
+# target to build an object file
+src\LinkedListDoubly.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.obj
+.PHONY : src\LinkedListDoubly.cpp.obj
+
+src\LinkedListDoubly.i: src\LinkedListDoubly.cpp.i
+
+.PHONY : src\LinkedListDoubly.i
+
+# target to preprocess a source file
+src\LinkedListDoubly.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.i
+.PHONY : src\LinkedListDoubly.cpp.i
+
+src\LinkedListDoubly.s: src\LinkedListDoubly.cpp.s
+
+.PHONY : src\LinkedListDoubly.s
+
+# target to generate assembly for a file
+src\LinkedListDoubly.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ChessEngine.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.s
+.PHONY : src\LinkedListDoubly.cpp.s
 
 src\chess_engine.obj: src\chess_engine.cpp.obj
 
@@ -271,9 +379,21 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... ChessEngine
+	@echo ... UCI.obj
+	@echo ... UCI.i
+	@echo ... UCI.s
+	@echo ... engine.obj
+	@echo ... engine.i
+	@echo ... engine.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... positionTables.obj
+	@echo ... positionTables.i
+	@echo ... positionTables.s
+	@echo ... src/LinkedListDoubly.obj
+	@echo ... src/LinkedListDoubly.i
+	@echo ... src/LinkedListDoubly.s
 	@echo ... src/chess_engine.obj
 	@echo ... src/chess_engine.i
 	@echo ... src/chess_engine.s

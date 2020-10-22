@@ -1,5 +1,9 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/ChessEngine.dir/UCI.cpp.obj"
+  "CMakeFiles/ChessEngine.dir/engine.cpp.obj"
   "CMakeFiles/ChessEngine.dir/main.cpp.obj"
+  "CMakeFiles/ChessEngine.dir/positionTables.cpp.obj"
+  "CMakeFiles/ChessEngine.dir/src/LinkedListDoubly.cpp.obj"
   "CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj"
   "CMakeFiles/ChessEngine.dir/src/position.cpp.obj"
   "CMakeFiles/ChessEngine.dir/src/tables.cpp.obj"

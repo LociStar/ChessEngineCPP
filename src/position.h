@@ -5,6 +5,7 @@
 #include <string>
 #include "tables.h"
 #include <utility>
+//#include "LinkedListDoubly.cpp"
 
 //A psuedorandom number generator
 //Source: Stockfish
@@ -75,6 +76,12 @@ private:
     //make/unmake
     uint64_t hash;
 public:
+    //Move history
+    //MyList<MyNode<Move>> moveHistory;
+
+    //for the 100 move rule
+    int halfMoveCounter;
+
     //The history of non-recoverable information
     UndoInfo history[256];
 
@@ -93,6 +100,9 @@ public:
         //Sets all squares on the board as empty
         for (int i = 0; i < 64; i++) board[i] = NO_PIECE;
         history[0] = UndoInfo();
+        //needs at least one Node
+        //moveHistory.push(new MyNode<Move>(Move(Square::NO_SQUARE, Square::NO_SQUARE)));
+        halfMoveCounter = 0;
     }
 
     //Places a piece on a particular square and updates the hash. Placing a piece on a square that is
@@ -157,11 +167,15 @@ public:
     template<Color C>
     void play(Move m);
 
+    inline void undoLast();
+
     template<Color C>
     void undo(Move m);
 
     template<Color Us>
     Move *generate_legals(Move *list);
+
+    Color getColor() { return side_to_play; };
 };
 
 //Returns the bitboard of all bishops and queens of a given color
@@ -232,12 +246,21 @@ Bitboard Position::blockers_to(Square s, Bitboard occ) const {
 //Plays a move in the position
 template<Color C>
 void Position::play(const Move m) {
+    //add Move to moveHistory
+    //moveHistory.push(new MyNode<Move>(m));
+
     side_to_play = ~side_to_play;
     ++game_ply;
     history[game_ply] = UndoInfo(history[game_ply - 1]);
 
     MoveFlags type = m.flags();
     history[game_ply].entry |= SQUARE_BB[m.to()] | SQUARE_BB[m.from()];
+
+    if (m.is_capture()) {
+        halfMoveCounter = 0;
+    } else {
+        ++halfMoveCounter;
+    }
 
     switch (type) {
         case QUIET:
@@ -325,6 +348,17 @@ void Position::play(const Move m) {
     }
 }
 
+void Position::undoLast() {
+    /*MyNode<Move> *t = moveHistory.getHead();
+    if (this->turn() == 0) {
+        undo<Color::WHITE>(t->getData());
+    } else {
+        undo<Color::BLACK>(t->getData());
+    }
+    cout << "List Size: " << moveHistory.size() << endl;
+    cout << this->moveHistory.pop()->toString() << endl;*/
+}
+
 //Undos a move in the current position, rolling it back to the previous position
 template<Color C>
 void Position::undo(const Move m) {
@@ -381,6 +415,7 @@ void Position::undo(const Move m) {
 
     side_to_play = ~side_to_play;
     --game_ply;
+    --halfMoveCounter;
 }
 
 
@@ -547,7 +582,7 @@ Move *Position::generate_legals(Move *list) {
             //2. No piece is attacking between the the rook and the king
             //3. The king is not in check
             if (!((history[game_ply].entry & oo_mask<Us>()) | ((all | danger) & oo_blockers_mask<Us>())))
-                *list++ = Us == WHITE ? Move(e1, h1, OO) : Move(e8, h8, OO);
+                *list++ = Us == WHITE ? Move(e1, g1, OO) : Move(e8, g8, OO);
             if (!((history[game_ply].entry & ooo_mask<Us>()) |
                   ((all | (danger & ~ignore_ooo_danger<Us>())) & ooo_blockers_mask<Us>())))
                 *list++ = Us == WHITE ? Move(e1, c1, OOO) : Move(e8, c8, OOO);

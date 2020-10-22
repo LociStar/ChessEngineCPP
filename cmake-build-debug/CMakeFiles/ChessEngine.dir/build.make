@@ -38,19 +38,19 @@ NULL=nul
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = C:\Users\locis\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe
+CMAKE_COMMAND = D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe
 
 # The command to remove a file.
-RM = C:\Users\locis\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E rm -f
+RM = D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\locis\CLionProjects\ChessEngineCPP
+CMAKE_SOURCE_DIR = C:\Users\LociStar\CLionProjects\ChessEngine
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles\ChessEngine.dir\depend.make
@@ -63,120 +63,204 @@ include CMakeFiles\ChessEngine.dir\flags.make
 
 CMakeFiles\ChessEngine.dir\main.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
 CMakeFiles\ChessEngine.dir\main.cpp.obj: ..\main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ChessEngine.dir/main.cpp.obj"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\main.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\locis\CLionProjects\ChessEngineCPP\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ChessEngine.dir/main.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\main.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\main.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/main.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\main.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\locis\CLionProjects\ChessEngineCPP\main.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\main.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\main.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/main.cpp.s"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\main.cpp.s /c C:\Users\locis\CLionProjects\ChessEngineCPP\main.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\main.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\main.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\engine.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
+CMakeFiles\ChessEngine.dir\engine.cpp.obj: ..\engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ChessEngine.dir/engine.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\engine.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\engine.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\engine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/engine.cpp.i"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\engine.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\engine.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\engine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/engine.cpp.s"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\engine.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\engine.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
 CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.obj: ..\src\chess_engine.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\chess_engine.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\locis\CLionProjects\ChessEngineCPP\src\chess_engine.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\chess_engine.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\src\chess_engine.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\locis\CLionProjects\ChessEngineCPP\src\chess_engine.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\src\chess_engine.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/src/chess_engine.cpp.s"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\chess_engine.cpp.s /c C:\Users\locis\CLionProjects\ChessEngineCPP\src\chess_engine.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\chess_engine.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\src\chess_engine.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\position.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
 CMakeFiles\ChessEngine.dir\src\position.cpp.obj: ..\src\position.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ChessEngine.dir/src/position.cpp.obj"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\position.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\locis\CLionProjects\ChessEngineCPP\src\position.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ChessEngine.dir/src/position.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\position.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\src\position.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\position.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/src/position.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\position.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\locis\CLionProjects\ChessEngineCPP\src\position.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\position.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\src\position.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\position.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/src/position.cpp.s"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\position.cpp.s /c C:\Users\locis\CLionProjects\ChessEngineCPP\src\position.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\position.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\src\position.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\tables.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
 CMakeFiles\ChessEngine.dir\src\tables.cpp.obj: ..\src\tables.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ChessEngine.dir/src/tables.cpp.obj"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\tables.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\locis\CLionProjects\ChessEngineCPP\src\tables.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ChessEngine.dir/src/tables.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\tables.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\src\tables.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\tables.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/src/tables.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\tables.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\locis\CLionProjects\ChessEngineCPP\src\tables.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\tables.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\src\tables.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\tables.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/src/tables.cpp.s"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\tables.cpp.s /c C:\Users\locis\CLionProjects\ChessEngineCPP\src\tables.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\tables.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\src\tables.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\types.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
 CMakeFiles\ChessEngine.dir\src\types.cpp.obj: ..\src\types.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ChessEngine.dir/src/types.cpp.obj"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\types.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\locis\CLionProjects\ChessEngineCPP\src\types.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ChessEngine.dir/src/types.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\types.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\src\types.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\types.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/src/types.cpp.i"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\types.cpp.i @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\locis\CLionProjects\ChessEngineCPP\src\types.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\types.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\src\types.cpp
 <<
 
 CMakeFiles\ChessEngine.dir\src\types.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/src/types.cpp.s"
-	C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\cl.exe @<<
- /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\types.cpp.s /c C:\Users\locis\CLionProjects\ChessEngineCPP\src\types.cpp
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\types.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\src\types.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
+CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.obj: ..\src\LinkedListDoubly.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ChessEngine.dir/src/LinkedListDoubly.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\src\LinkedListDoubly.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/src/LinkedListDoubly.cpp.i"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\src\LinkedListDoubly.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/src/LinkedListDoubly.cpp.s"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\src\LinkedListDoubly.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\positionTables.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
+CMakeFiles\ChessEngine.dir\positionTables.cpp.obj: ..\positionTables.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ChessEngine.dir/positionTables.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\positionTables.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\positionTables.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\positionTables.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/positionTables.cpp.i"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\positionTables.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\positionTables.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\positionTables.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/positionTables.cpp.s"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\positionTables.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\positionTables.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\UCI.cpp.obj: CMakeFiles\ChessEngine.dir\flags.make
+CMakeFiles\ChessEngine.dir\UCI.cpp.obj: ..\UCI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ChessEngine.dir/UCI.cpp.obj"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\ChessEngine.dir\UCI.cpp.obj /FdCMakeFiles\ChessEngine.dir\ /FS -c C:\Users\LociStar\CLionProjects\ChessEngine\UCI.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\UCI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ChessEngine.dir/UCI.cpp.i"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe > CMakeFiles\ChessEngine.dir\UCI.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\LociStar\CLionProjects\ChessEngine\UCI.cpp
+<<
+
+CMakeFiles\ChessEngine.dir\UCI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ChessEngine.dir/UCI.cpp.s"
+	D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\ChessEngine.dir\UCI.cpp.s /c C:\Users\LociStar\CLionProjects\ChessEngine\UCI.cpp
 <<
 
 # Object files for target ChessEngine
 ChessEngine_OBJECTS = \
 "CMakeFiles\ChessEngine.dir\main.cpp.obj" \
+"CMakeFiles\ChessEngine.dir\engine.cpp.obj" \
 "CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.obj" \
 "CMakeFiles\ChessEngine.dir\src\position.cpp.obj" \
 "CMakeFiles\ChessEngine.dir\src\tables.cpp.obj" \
-"CMakeFiles\ChessEngine.dir\src\types.cpp.obj"
+"CMakeFiles\ChessEngine.dir\src\types.cpp.obj" \
+"CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.obj" \
+"CMakeFiles\ChessEngine.dir\positionTables.cpp.obj" \
+"CMakeFiles\ChessEngine.dir\UCI.cpp.obj"
 
 # External object files for target ChessEngine
 ChessEngine_EXTERNAL_OBJECTS =
 
 ChessEngine.exe: CMakeFiles\ChessEngine.dir\main.cpp.obj
+ChessEngine.exe: CMakeFiles\ChessEngine.dir\engine.cpp.obj
 ChessEngine.exe: CMakeFiles\ChessEngine.dir\src\chess_engine.cpp.obj
 ChessEngine.exe: CMakeFiles\ChessEngine.dir\src\position.cpp.obj
 ChessEngine.exe: CMakeFiles\ChessEngine.dir\src\tables.cpp.obj
 ChessEngine.exe: CMakeFiles\ChessEngine.dir\src\types.cpp.obj
+ChessEngine.exe: CMakeFiles\ChessEngine.dir\src\LinkedListDoubly.cpp.obj
+ChessEngine.exe: CMakeFiles\ChessEngine.dir\positionTables.cpp.obj
+ChessEngine.exe: CMakeFiles\ChessEngine.dir\UCI.cpp.obj
 ChessEngine.exe: CMakeFiles\ChessEngine.dir\build.make
 ChessEngine.exe: CMakeFiles\ChessEngine.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ChessEngine.exe"
-	C:\Users\locis\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E vs_link_exe --intdir=CMakeFiles\ChessEngine.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- C:\PROGRA~2\MICROS~2\2019\COMMUN~1\VC\Tools\MSVC\1427~1.291\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\ChessEngine.dir\objects1.rsp @<<
- /out:ChessEngine.exe /implib:ChessEngine.lib /pdb:C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\ChessEngine.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable ChessEngine.exe"
+	D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -E vs_link_exe --intdir=CMakeFiles\ChessEngine.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests  -- D:\Programms\VS\VC\Tools\MSVC\14.27.29110\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\ChessEngine.dir\objects1.rsp @<<
+ /out:ChessEngine.exe /implib:ChessEngine.lib /pdb:C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\ChessEngine.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
 
 # Rule to build all files generated by this target.
@@ -189,6 +273,6 @@ CMakeFiles\ChessEngine.dir\clean:
 .PHONY : CMakeFiles\ChessEngine.dir\clean
 
 CMakeFiles\ChessEngine.dir\depend:
-	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" C:\Users\locis\CLionProjects\ChessEngineCPP C:\Users\locis\CLionProjects\ChessEngineCPP C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug C:\Users\locis\CLionProjects\ChessEngineCPP\cmake-build-debug\CMakeFiles\ChessEngine.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "NMake Makefiles" C:\Users\LociStar\CLionProjects\ChessEngine C:\Users\LociStar\CLionProjects\ChessEngine C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\CMakeFiles\ChessEngine.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles\ChessEngine.dir\depend
 
