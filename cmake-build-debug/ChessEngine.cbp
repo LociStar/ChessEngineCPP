@@ -4,130 +4,136 @@
 	<Project>
 		<Option title="ChessEngine"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="msvc8"/>
+		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug"/>
+				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 all"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ChessEngine">
-				<Option output="C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/ChessEngine.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug"/>
+				<Option output="C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/ChessEngine.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="msvc8"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:\Programms\VS\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
-					<Add directory="D:\Programms\VS\VC\Tools\MSVC\14.27.29110\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 ChessEngine"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 ChessEngine"/>
+					<CompileFile command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ChessEngine/fast">
-				<Option output="C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug/ChessEngine.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug"/>
+				<Option output="C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/ChessEngine.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="msvc8"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="D:\Programms\VS\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
-					<Add directory="D:\Programms\VS\VC\Tools\MSVC\14.27.29110\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 ChessEngine/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 ChessEngine/fast"/>
+					<CompileFile command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug"/>
+				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug"/>
+				<Option working_dir="C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\LociStar\CLionProjects\ChessEngine\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/LociStar/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.3345.126/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/UCI.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/UCI.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/UCI.h">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/UCI.h">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/engine.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/engine.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/engine.h">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/engine.h">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/main.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/main.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/positionTables.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/positionTables.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/positionTables.h">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/positionTables.h">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/LinkedListDoubly.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/LinkedListDoubly.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/chess_engine.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/chess_engine.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/position.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/position.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/position.h">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/position.h">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/tables.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/pvTable.h">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/tables.h">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/tables.cpp">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/types.cpp">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/tables.h">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/src/types.h">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/transpositionTable.h">
 			<Option target="ChessEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngine/CMakeLists.txt">
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/types.cpp">
+			<Option target="ChessEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/src/types.h">
+			<Option target="ChessEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/LociStar/CLionProjects/ChessEngineCPP/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

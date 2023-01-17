@@ -104,13 +104,21 @@ extern const Bitboard k2;
 extern const Bitboard k4;
 extern const Bitboard kf;
 
-extern inline int pop_count(Bitboard x);
-extern inline int sparse_pop_count(Bitboard x);
-extern inline Square pop_lsb(Bitboard* b);
+//extern inline int pop_count(Bitboard x);
+//extern inline int sparse_pop_count(Bitboard x);
+//extern inline Square pop_lsb(Bitboard* b);
+
+//gk extern inline int pop_count(Bitboard x);
+extern int pop_count(Bitboard x);
+//gk extern inline int sparse_pop_count(Bitboard x);
+extern int sparse_pop_count(Bitboard x);
+//gk extern inline Square pop_lsb(Bitboard* b);
+extern Square pop_lsb(Bitboard* b);
 
 extern const int DEBRUIJN64[64];
 extern const Bitboard MAGIC;
-extern constexpr Square bsf(Bitboard b);
+//gk extern constexpr Square bsf(Bitboard b);
+extern Square bsf(Bitboard b);
 
 constexpr Rank rank_of(Square s) { return Rank(s >> 3); }
 constexpr File file_of(Square s) { return File(s & 0b111); }
@@ -157,11 +165,44 @@ enum MoveFlags : int {
 };
 
 
+// most valuable victim & less valuable attacker
+
+/*
+
+    (Victims) Pawn Knight Bishop   Rook  Queen   King
+  (Attackers)
+        Pawn   105    205    305    405    505    605
+      Knight   104    204    304    404    504    604
+      Bishop   103    203    303    403    503    603
+        Rook   102    202    302    402    502    602
+       Queen   101    201    301    401    501    601
+        King   100    200    300    400    500    600
+*/
+
+// MVV LVA [attacker][victim]
+static int mvv_lva[12][12] = {
+        105, 205, 305, 405, 505, 605,  105, 205, 305, 405, 505, 605,
+        104, 204, 304, 404, 504, 604,  104, 204, 304, 404, 504, 604,
+        103, 203, 303, 403, 503, 603,  103, 203, 303, 403, 503, 603,
+        102, 202, 302, 402, 502, 602,  102, 202, 302, 402, 502, 602,
+        101, 201, 301, 401, 501, 601,  101, 201, 301, 401, 501, 601,
+        100, 200, 300, 400, 500, 600,  100, 200, 300, 400, 500, 600,
+
+        105, 205, 305, 405, 505, 605,  105, 205, 305, 405, 505, 605,
+        104, 204, 304, 404, 504, 604,  104, 204, 304, 404, 504, 604,
+        103, 203, 303, 403, 503, 603,  103, 203, 303, 403, 503, 603,
+        102, 202, 302, 402, 502, 602,  102, 202, 302, 402, 502, 602,
+        101, 201, 301, 401, 501, 601,  101, 201, 301, 401, 501, 601,
+        100, 200, 300, 400, 500, 600,  100, 200, 300, 400, 500, 600
+};
+
+
 class Move {
 private:
 	//The internal representation of the move
-	uint16_t move;
+
 public:
+    uint16_t move;
 	//Defaults to a null move (a1a1)
 	inline Move() : move(0) {}
 	
@@ -188,6 +229,14 @@ public:
 	inline bool is_capture() const {
 		return (move >> 12) & CAPTURES;
 	}
+
+    inline bool is_promotion() const {
+        return (move >> 12) & PROMOTIONS;
+    }
+
+    inline bool is_promotion_capture() const {
+        return (move >> 12) & PROMOTION_CAPTURES;
+    }
 
 	void operator=(Move m) { move = m.move; }
 	bool operator==(Move a) const { return to_from() == a.to_from(); }

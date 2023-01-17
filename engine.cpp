@@ -4,26 +4,53 @@
 
 #include "engine.h"
 #include <bitset>
+#include <chrono>
 #include "positionTables.h"
 
 template<Color Us>
-int Engine::negamax(Position *p, int depth, int alpha, int beta, bool first) {
-    //int localalpha = alpha;
+int Engine::negamax(Position *pos, int depth, int alpha, int beta, bool first) {
 
+    auto end = std::chrono::high_resolution_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    // Check if the time taken has exceeded the time control
+    if (elapsed.count() > timeControl) {
+        return quiescenceSearch<Us>(pos, alpha, beta, 17);
+    }
+
+    int alphaOrig = alpha;
     //tableNode tableNode = transposition.get(key);
     counter++;
 
-    int move_score = 0;
-    if (depth == 0) {
-        //move_score = quiescenceSearch(alpha, beta);
-        //evaluation_2<Us>();
-        return evaluation();
+    //TT lookup
+    auto entry = tt.lookup(pos->get_hash());
+    if (entry != nullptr && entry->depth >= depth) {
+        switch (entry->type) {
+            case 0: //exact
+                return entry->score;
+            case 1: //lower bound
+                alpha = std::max(alpha, entry->score);
+                break;
+            case 2: //upper bound
+                beta = std::min(beta, entry->score);
+                break;
+        }
+        if (alpha >= beta) {
+            return entry->score;
+        }
+    }
+    Move bestLocalMove;
+    Move pv = pvTable.lookup(pos->get_hash());
+    if (pv != Move()) {
+        bestLocalMove = pv;
+        //bestLocalMove = pv;
     }
 
-    int best_score = -999999999; // Negative-Infinity
-    MoveList<Us> moveList(*p);
+    int move_score = 0;
+    if (depth <= 0) {
+        move_score = quiescenceSearch<Us>(pos, alpha, beta, 50);
+        return move_score;
+    }
 
-    //sortMoves(moveList, key);2020-09-30 12:07:43,585-->1:position startpos moves b1a3 b8a6 g1f3 g8f6 a1b1 a8b8 h1g1 h8g8
     if (isDraw()) {
         return 0;
     }
@@ -31,26 +58,88 @@ int Engine::negamax(Position *p, int depth, int alpha, int beta, bool first) {
         return -9000 * depth;
     }
 
-    for (Move move : moveList) {
-        p->play<Us>(move);
-        move_score = -negamax<~Us>(p, depth - 1, -beta, -alpha, false);
-        p->undo<Us>(move);
+    int best_score = -999999999; // Negative-Infinity
+    MoveList<Us> moveList(*pos);
+    moveList.sort(&position, &pvTable);
+
+    for (Move move: moveList) {
+        pos->play<Us>(move);
+        move_score = -negamax<~Us>(pos, depth - 1, -beta, -alpha, false);
+        pos->undo<Us>(move);
 
         if (move_score > best_score) {
             best_score = move_score;
-            if (first) {
-                bestMove = move;
-            }
+            bestLocalMove = move;
+            pvTable.store(pos->get_hash(), bestLocalMove);
         }
         alpha = std::max(alpha, best_score);
         if (alpha >= beta) {
             break;
         }
     }
-
-    //addTransposition(key, depth, alphaOriginal, beta, move_score, best);
+    //store in TT
+    entry = new TranspositionTable::Entry();
+    entry->score = best_score;
+//    entry->pvMove = bestMove;
+    if (entry->score <= alphaOrig) {
+        entry->type = 2;
+    } else if (entry->score >= beta) {
+        entry->type = 1;
+    } else {
+        entry->type = 0;
+    }
+    entry->depth = depth;
+    tt.store(pos->get_hash(), *entry);
 
     return best_score;
+}
+
+template<Color Us>
+int Engine::quiescenceSearch(Position *pos, int alpha, int beta, int depth) {
+    counter++;
+    int standpat = evaluation();
+    if (standpat >= beta) {
+        return beta;
+    } else if (alpha < standpat) {
+        alpha = standpat;
+    }
+
+    if (depth == 0) {
+        return alpha;
+    }
+
+    //do the move generation for captures and checks
+    CaptureList<Us> captureList(position);
+
+    if (captureList.size() == 0) {
+        if (isCheckMate()) {
+            return -9000 * depth;
+        }
+        if (isDraw()) {
+            return 0;
+        }
+    }
+    // sort capture list
+    // captureList.sort(&position, &pvTable);
+
+    for (Move move: captureList) {
+        //if (move.is_capture()) {
+            pos->play<Us>(move);
+            int score = -quiescenceSearch<~Us>(pos, -beta, -alpha, depth - 1);
+            pos->undo<Us>(move);
+            if (score >= beta) {
+                return beta;
+            } else if (score > alpha) {
+                alpha = score;
+            }
+//            alpha = std::max(alpha, score);
+//            if (alpha >= beta) {
+//                break;
+//            }
+        //}
+    }
+
+    return alpha;
 }
 
 void evalPawn(Position *position, int *value) {
@@ -294,24 +383,138 @@ bool Engine::isCheckMate() { //TODO: make sideToPlay public/ getter?
 
 int Engine::search() {
     int x = 0;
-    int depth = 6;
+    int depth = 1;
     int ni = -999999999;
     int pi = 999999999;
-    bool f = true;
-    if (position.turn() == 0) {
-        x = negamax<WHITE>(&position, depth, ni, pi, f);
-        MoveList<WHITE> moves(position);
-        for (Move move : moves) {
+    start = std::chrono::high_resolution_clock::now();
+    while (depth <= 8) {
+        if (position.turn() == 0) {
+            x = negamax<WHITE>(&position, depth, ni, pi, true);
+            //position.play<WHITE>(bestMove);
+        } else {
+            x = negamax<BLACK>(&position, depth, ni, pi, true);
+            //position.play<BLACK>(bestMove);
+        }
+        auto end = std::chrono::high_resolution_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        // Check if the time taken has exceeded the time control
+        if (elapsed.count() > timeControl) {
+            auto entry = tt.lookup(position.get_hash());
+            if (entry != nullptr) {
+                // Use the PV move stored in the transposition table
+                bestMove = pvTable.lookup(position.get_hash());
+            }
+            break;
+        }
+        std::vector<Move> pvLine = getPVLine(position);
+        std::cout << "info depth " << depth << " score cp " << x << " tt " << tt.size() << " time " << elapsed.count() << " nodes " << counter << " pv ";
+        for (auto move: pvLine) {
             std::cout << move << " ";
         }
+        std::cout << std::endl;
+
+//        if (position.turn() == 0) {
+//            MoveList<WHITE> moveList(position);
+//            moveList.sort(&position, &pvTable);
+//            //print moveList
+//            std::cout << "moves:";
+//            for (Move move: moveList) {
+//                std::cout << move << " ";
+//            }
+//            std::cout << std::endl;
+//        } else {
+//            MoveList<BLACK> moveList(position);
+//            moveList.sort(&position, &pvTable);
+//            //print moveList
+//            std::cout << "moves:";
+//            for (Move move: moveList) {
+//                std::cout << move << " ";
+//            }
+//            std::cout << std::endl;
+//        }
+
+        depth++;
+    }
+
+    bestMove = pvTable.lookup(position.get_hash());
+    if (position.turn() == 0) {
         position.play<WHITE>(bestMove);
     } else {
-        x = negamax<BLACK>(&position, depth, ni, pi, f);
-        MoveList<BLACK> moves(position);
-        for (Move move : moves) {
-            std::cout << move << " ";
-        }
         position.play<BLACK>(bestMove);
     }
+    std::cout << "Depth: " << depth << std::endl;
+    std::vector<Move> pvLine = getPVLine(position);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    std::cout << "info depth " << depth << " score cp " << x << " tt " << tt.size() << " time " << elapsed.count() << " nodes " << counter << " pv ";
+    for (auto move: pvLine) {
+        std::cout << move << " ";
+    }
+    std::cout << std::endl;
     return x;
 }
+
+void Engine::getCaptures() {
+    std::cout << "Captures White: ";
+    CaptureList<WHITE> moves(position);
+    for (Move move: moves) {
+        std::cout << move << "-";
+        std::cout << move.flags() << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "Captures Black: ";
+    CaptureList<BLACK> moves2(position);
+    for (Move move: moves2) {
+        std::cout << move << "-";
+        std::cout << move.flags() << " ";
+    }
+    std::cout << std::endl;
+}
+
+void Engine::getMoves() {
+    std::cout << "Moves White: ";
+    MoveList<WHITE> moves(position);
+    for (Move move: moves) {
+        std::cout << move << " ";
+    }
+    std::cout << std::endl;
+    std::cout << "Moves Black: ";
+    MoveList<BLACK> moves2(position);
+    for (Move move: moves2) {
+        std::cout << move << " ";
+    }
+    std::cout << std::endl;
+}
+
+void Engine::info() {
+    std::cout << "Turn: " << position.turn() << std::endl;
+    std::cout << "Ply: " << position.ply() << std::endl;
+    std::cout << "HalfMoveCounter: " << position.halfMoveCounter << std::endl;
+    std::cout << "TT size: " << tt.size() << std::endl;
+}
+
+std::vector<Move> Engine::getPVLine(Position& pos) {
+    std::vector<Move> pvLine;
+    while (true) {
+        Move pvMove = pvTable.lookup(pos.get_hash());
+        if (pvMove == Move()) {
+            break;
+        }
+        pvLine.push_back(pvMove);
+        if (pos.turn() == 0) {
+            pos.play<WHITE>(pvMove);
+        } else {
+            pos.play<BLACK>(pvMove);
+        }
+    }
+    // Loop through the PV line and undo the moves
+    for (int i = pvLine.size() - 1; i >= 0; i--) {
+        if (pos.turn() == 0) {
+            pos.undo<BLACK>(pvLine[i]);
+        } else {
+            pos.undo<WHITE>(pvLine[i]);
+        }
+    }
+    return pvLine;
+}
+

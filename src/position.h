@@ -5,6 +5,7 @@
 #include <string>
 #include "tables.h"
 #include <utility>
+#include "pvTable.h"
 //#include "LinkedListDoubly.cpp"
 
 //A psuedorandom number generator
@@ -94,8 +95,11 @@ public:
     Bitboard pinned;
 
 
-    Position() : piece_bb{0}, side_to_play(WHITE), game_ply(0), board{},
-                 hash(0), pinned(0), checkers(0) {
+    //gk adapted order of initialization
+    //gk	Position() : piece_bb{ 0 }, side_to_play(WHITE), game_ply(0), board{},
+    //gk		hash(0), pinned(0), checkers(0) {
+    Position() : piece_bb{0}, board{}, side_to_play(WHITE), game_ply(0),
+                 hash(0), checkers(0), pinned(0) {
 
         //Sets all squares on the board as empty
         for (int i = 0; i < 64; i++) board[i] = NO_PIECE;
@@ -109,6 +113,7 @@ public:
     //already occupied is an error
     inline void put_piece(Piece pc, Square s) {
         board[s] = pc;
+        piece_bb[pc] |= SQUARE_BB[s];
         piece_bb[pc] |= SQUARE_BB[s];
         hash ^= zobrist::zobrist_table[pc][s];
     }
@@ -174,6 +179,9 @@ public:
 
     template<Color Us>
     Move *generate_legals(Move *list);
+
+    template<Color Us>
+    Move *generate_captures(Move *list);
 
     Color getColor() { return side_to_play; };
 };
@@ -478,13 +486,15 @@ Move *Position::generate_legals(Move *list) {
     //Checkers of each piece type are identified by:
     //1. Projecting attacks FROM the king square
     //2. Intersecting this bitboard with the enemy bitboard of that piece type
-    checkers = attacks<KNIGHT>(our_king, all) & bitboard_of(Them, KNIGHT)
-               | pawn_attacks<Us>(our_king) & bitboard_of(Them, PAWN);
+    //gk additional parentheses
+    checkers = (attacks<KNIGHT>(our_king, all) & bitboard_of(Them, KNIGHT))
+               | (pawn_attacks<Us>(our_king) & bitboard_of(Them, PAWN));
 
     //Here, we identify slider checkers and pinners simultaneously, and candidates for such pinners
     //and checkers are represented by the bitboard <candidates>
-    Bitboard candidates = attacks<ROOK>(our_king, them_bb) & their_orth_sliders
-                          | attacks<BISHOP>(our_king, them_bb) & their_diag_sliders;
+    //gk additional parentheses
+    Bitboard candidates = (attacks<ROOK>(our_king, them_bb) & their_orth_sliders)
+                          | (attacks<BISHOP>(our_king, them_bb) & their_diag_sliders);
 
     pinned = 0;
     while (candidates) {
@@ -495,7 +505,8 @@ Move *Position::generate_legals(Move *list) {
         //If not, add the slider to the checker bitboard
         if (b1 == 0) checkers ^= SQUARE_BB[s];
             //If there is only one of our pieces between them, add our piece to the pinned bitboard
-        else if ((b1 & b1 - 1) == 0) pinned ^= b1;
+            //gk additional parentheses
+        else if ((b1 & (b1 - 1)) == 0) pinned ^= b1;
     }
 
     //This makes it easier to mask pieces
@@ -548,7 +559,8 @@ Move *Position::generate_legals(Move *list) {
 
             if (history[game_ply].epsq != NO_SQUARE) {
                 //b1 contains our pawns that can perform an e.p. capture
-                b1 = pawn_attacks<Them>(history[game_ply].epsq) & bitboard_of(Us, PAWN) & not_pinned;
+                b2 = pawn_attacks<Them>(history[game_ply].epsq) & bitboard_of(Us, PAWN) & them_bb;
+                b1 = b2 & not_pinned;
                 while (b1) {
                     s = pop_lsb(&b1);
 
@@ -574,6 +586,12 @@ Move *Position::generate_legals(Move *list) {
                                          MASK_RANK[rank_of(our_king)]) &
                          their_orth_sliders) == 0)
                         *list++ = Move(s, history[game_ply].epsq, EN_PASSANT);
+                }
+
+                //Pinned pawns can only capture e.p. if they are pinned diagonally and the e.p. square is in line with the king
+                b1 = b2 & pinned & LINE[history[game_ply].epsq][our_king];
+                if (b1) {
+                    *list++ = Move(bsf(b1), history[game_ply].epsq, EN_PASSANT);
                 }
             }
 
@@ -733,6 +751,185 @@ Move *Position::generate_legals(Move *list) {
     return list;
 }
 
+template<Color Us>
+Move *Position::generate_captures(Move *list) {
+    constexpr Color Them = ~Us;
+
+    const Bitboard us_bb = all_pieces<Us>();
+    const Bitboard them_bb = all_pieces<Them>();
+    const Bitboard all = us_bb | them_bb;
+
+    const Square our_king = bsf(bitboard_of(Us, KING));
+    //const Square their_king = bsf(bitboard_of(Them, KING));
+
+    const Bitboard our_diag_sliders = diagonal_sliders<Us>();
+    const Bitboard their_diag_sliders = diagonal_sliders<Them>();
+    const Bitboard our_orth_sliders = orthogonal_sliders<Us>();
+    const Bitboard their_orth_sliders = orthogonal_sliders<Them>();
+
+    //General purpose bitboards for attacks, masks, etc.
+    Bitboard b1, b2, b3;
+
+    //The king captures
+    b1 = attacks<KING>(our_king, all) & ~(us_bb);
+    list = make<CAPTURE>(our_king, b1 & them_bb, list);
+
+    //The quiet mask filter destination squares to those where pieces must be moved to block an incoming attack
+    //to the king
+    //Bitboard quiet_mask;
+
+    //A general purpose square for storing destinations, etc.
+    Square s;
+
+    const Bitboard not_pinned = ~pinned;
+
+    Bitboard capture_mask;
+
+    //We can capture any enemy piece
+    capture_mask = them_bb;
+
+    //...and we can play a quiet move to any square which is not occupied
+
+    if (history[game_ply].epsq != NO_SQUARE) {
+        //b1 contains our pawns that can perform an e.p. capture
+        b2 = pawn_attacks<Them>(history[game_ply].epsq) & bitboard_of(Us, PAWN) & them_bb;
+        b1 = b2 & not_pinned;
+        while (b1) {
+            s = pop_lsb(&b1);
+
+            //This piece of evil bit-fiddling magic prevents the infamous 'pseudo-pinned' e.p. case,
+            //where the pawn is not directly pinned, but on moving the pawn and capturing the enemy pawn
+            //e.p., a rook or queen attack to the king is revealed
+
+            /*
+            .nbqkbnr
+            ppp.pppp
+            ........
+            r..pP..K
+            ........
+            ........
+            PPPP.PPP
+            RNBQ.BNR
+
+            Here, if white plays exd5 e.p., the black rook on a5 attacks the white king on h5
+            */
+
+            if ((sliding_attacks(our_king, all ^ SQUARE_BB[s]
+                                           ^ shift<relative_dir<Us>(SOUTH)>(SQUARE_BB[history[game_ply].epsq]),
+                                 MASK_RANK[rank_of(our_king)]) &
+                 their_orth_sliders) == 0) {
+                std::cout << "s: " << s << std::endl;
+                *list++ = Move(s, history[game_ply].epsq, EN_PASSANT);
+            }
+        }
+
+        //Pinned pawns can only capture e.p. if they are pinned diagonally and the e.p. square is in line with the king
+        b1 = b2 & pinned & LINE[history[game_ply].epsq][our_king];
+        if (b1) {
+            *list++ = Move(bsf(b1), history[game_ply].epsq, EN_PASSANT);
+        }
+    }
+
+    //For each pinned rook, bishop or queen...
+    b1 = ~(not_pinned | bitboard_of(Us, KNIGHT));
+    while (b1) {
+        s = pop_lsb(&b1);
+
+        //...only include attacks that are aligned with our king, since pinned pieces
+        //are constrained to move in this direction only
+        b2 = attacks(type_of(board[s]), s, all) & LINE[our_king][s];
+        list = make<CAPTURE>(s, b2 & capture_mask, list);
+    }
+
+    //For each pinned pawn...
+    b1 = ~not_pinned & bitboard_of(Us, PAWN);
+    while (b1) {
+        s = pop_lsb(&b1);
+
+        if (rank_of(s) == relative_rank<Us>(RANK7)) {
+            //Quiet promotions are impossible since the square in front of the pawn will
+            //either be occupied by the king or the pinner, or doing so would leave our king
+            //in check
+            b2 = pawn_attacks<Us>(s) & capture_mask & LINE[our_king][s];
+            list = make<PROMOTION_CAPTURES>(s, b2, list);
+        } else {
+            b2 = pawn_attacks<Us>(s) & them_bb & LINE[s][our_king];
+            list = make<CAPTURE>(s, b2, list);
+        }
+    }
+
+    //Non-pinned knight moves
+    b1 = bitboard_of(Us, KNIGHT) & not_pinned;
+    while (b1) {
+        s = pop_lsb(&b1);
+        b2 = attacks<KNIGHT>(s, all);
+        list = make<CAPTURE>(s, b2 & capture_mask, list);
+    }
+
+    //Non-pinned bishops and queens
+    b1 = our_diag_sliders & not_pinned;
+    while (b1) {
+        s = pop_lsb(&b1);
+        b2 = attacks<BISHOP>(s, all);
+        list = make<CAPTURE>(s, b2 & capture_mask, list);
+    }
+
+    //Non-pinned rooks and queens
+    b1 = our_orth_sliders & not_pinned;
+    while (b1) {
+        s = pop_lsb(&b1);
+        b2 = attacks<ROOK>(s, all);
+        list = make<CAPTURE>(s, b2 & capture_mask, list);
+    }
+
+    //b1 contains non-pinned pawns which are not on the last rank
+    b1 = bitboard_of(Us, PAWN) & not_pinned & ~MASK_RANK[relative_rank<Us>(RANK7)];
+
+    //Pawn captures
+    b2 = shift<relative_dir<Us>(NORTH_WEST)>(b1) & capture_mask;
+    b3 = shift<relative_dir<Us>(NORTH_EAST)>(b1) & capture_mask;
+
+    while (b2) {
+        s = pop_lsb(&b2);
+        *list++ = Move(s - relative_dir<Us>(NORTH_WEST), s, CAPTURE);
+    }
+
+    while (b3) {
+        s = pop_lsb(&b3);
+        *list++ = Move(s - relative_dir<Us>(NORTH_EAST), s, CAPTURE);
+    }
+
+    //b1 now contains non-pinned pawns which ARE on the last rank (about to promote)
+    b1 = bitboard_of(Us, PAWN) & not_pinned & MASK_RANK[relative_rank<Us>(RANK7)];
+    if (b1) {
+
+        //Promotion captures
+        b2 = shift<relative_dir<Us>(NORTH_WEST)>(b1) & capture_mask;
+        b3 = shift<relative_dir<Us>(NORTH_EAST)>(b1) & capture_mask;
+
+        while (b2) {
+            s = pop_lsb(&b2);
+            //One move is added for each promotion piece
+            *list++ = Move(s - relative_dir<Us>(NORTH_WEST), s, PC_KNIGHT);
+            *list++ = Move(s - relative_dir<Us>(NORTH_WEST), s, PC_BISHOP);
+            *list++ = Move(s - relative_dir<Us>(NORTH_WEST), s, PC_ROOK);
+            *list++ = Move(s - relative_dir<Us>(NORTH_WEST), s, PC_QUEEN);
+        }
+
+        while (b3) {
+            s = pop_lsb(&b3);
+            //One move is added for each promotion piece
+            *list++ = Move(s - relative_dir<Us>(NORTH_EAST), s, PC_KNIGHT);
+            *list++ = Move(s - relative_dir<Us>(NORTH_EAST), s, PC_BISHOP);
+            *list++ = Move(s - relative_dir<Us>(NORTH_EAST), s, PC_ROOK);
+            *list++ = Move(s - relative_dir<Us>(NORTH_EAST), s, PC_QUEEN);
+        }
+    }
+
+
+    return list;
+}
+
 //A convenience class for interfacing with legal moves, rather than using the low-level
 //generate_legals() function directly. It can be iterated over.
 template<Color Us>
@@ -740,11 +937,121 @@ class MoveList {
 public:
     explicit MoveList(Position &p) : last(p.generate_legals<Us>(list)) {}
 
-    const Move *begin() const { return list; }
+    Move *begin() { return list; }
 
-    const Move *end() const { return last; }
+    Move *end() { return last; }
 
-    size_t size() const { return last - list; }
+    size_t size() { return last - list; }
+
+    void sort(Position *position, PVTable *pvT) {
+        for (Move *current = begin(); current != end(); current++) {
+            Move *max = current;
+            for (Move *move = current + 1; move != end(); move++) {
+                if (moveValue(move, position, pvT) > moveValue(max, position, pvT)) {
+                    max = move;
+                }
+            }
+            std::swap(*max, *current);
+        }
+    }
+
+    int moveValue(Move *move, Position *position, PVTable *pvT) {
+        auto pvMove = pvT->lookup(position->get_hash());
+        if (pvMove != Move()) {
+            if (pvMove == *move) {
+                return 1000000;
+            }
+        }
+        if (move->is_capture()) {
+            // return mvv_lva
+            return mvv_lva[position->at(move->from())][position->at(move->to())];
+        }
+        return 0;
+    }
+
+private:
+    Move list[218];
+    Move *last;
+};
+
+//template<Color Us>
+//void MoveList<Us>::sort() {
+//    for (Move* current = begin(); current != end(); current++) {
+//        Move* min = current;
+//        for (Move* move = current + 1; move != end(); move++) {
+//            if (Engine::moveValue(*move) < moveValue(*min)) {
+//                min = move;
+//            }
+//        }
+//        std::swap(*current, *min);
+//    }
+//}
+
+template<Color Us>
+class CaptureList {
+public:
+    explicit CaptureList(Position &p) : last(p.template generate_captures<Us>(list)) {}
+
+    Move *begin() { return list; }
+
+    Move *end() { return last; }
+
+    size_t size() { return last - list; }
+
+    void sort(Position *position, PVTable *pvT) {
+        for (Move *current = begin(); current != end(); current++) {
+            Move *min = current;
+            for (Move *move = current + 1; move != end(); move++) {
+                if (moveValue(move, position, pvT) < moveValue(min, position, pvT)) {
+                    min = move;
+                }
+            }
+            std::swap(*current, *min);
+        }
+    }
+
+    int moveValue(Move *move, Position *position, PVTable *pvT) {
+        int value_victim;
+        int value_attacker;
+        int value_move;
+        if (type_of(position->at(move->from())) == QUEEN) {
+            value_attacker = 900;
+        } else if (type_of(position->at(move->from())) == ROOK) {
+            value_attacker = 500;
+        } else if (type_of(position->at(move->from())) == BISHOP) {
+            value_attacker = 300;
+        } else if (type_of(position->at(move->from())) == KNIGHT) {
+            value_attacker = 300;
+        } else if (type_of(position->at(move->from())) == PAWN) {
+            value_attacker = 100;
+        } else {
+            value_attacker = 0;
+        }
+        if (type_of(position->at(move->to())) == QUEEN) {
+            value_victim = 900;
+        } else if (type_of(position->at(move->to())) == ROOK) {
+            value_victim = 500;
+        } else if (type_of(position->at(move->to())) == BISHOP) {
+            value_victim = 300;
+        } else if (type_of(position->at(move->to())) == KNIGHT) {
+            value_victim = 300;
+        } else if (type_of(position->at(move->to())) == PAWN) {
+            value_victim = 100;
+        } else {
+            value_victim = 0;
+        }
+        auto pvMove = pvT->lookup(position->get_hash());
+        if (pvMove != Move()) {
+            if (pvMove == *move) {
+                value_move = 1000000;
+            } else {
+                value_move = 0;
+            }
+        } else {
+            value_move = 0;
+        }
+        return value_move + value_attacker - value_victim;
+    }
 
 private:
     Move list[218];

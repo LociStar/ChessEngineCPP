@@ -34,6 +34,7 @@ private:
 
     void inputQuit(std::string input);
 
+    void test(std::string input);
 };
 
 

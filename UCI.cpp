@@ -30,6 +30,8 @@ void UCI::uciCommunication() {
             inputUCINewGame();
         } else if (startsWith(input, "position")) {
             inputPosition(input);
+        } else if (startsWith(input, "info")) {
+            test(input);
         } else if (startsWith(input, "go")) {
             inputGo(input);
         } else if (input == "print") {
@@ -101,7 +103,7 @@ void UCI::inputPosition(std::string input) {
             result.push_back(s);
         Move *move = nullptr;
         if (false) {
-            for (auto &item : result) {
+            for (auto &item: result) {
                 //if (engine->position.history[engine->position.ply()].epsq == )
                 std::cout << "LOOP" << item << std::endl;
                 move = new Move(item);
@@ -109,7 +111,7 @@ void UCI::inputPosition(std::string input) {
 
                 if (engine->position.turn() == 0) {
                     MoveList<WHITE> moveList1(engine->position);
-                    for (Move legalMove : moveList1) {
+                    for (Move legalMove: moveList1) {
                         //move validation check
                         if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
                             std::cout << "Input White: " << move->from() << move->to() << std::endl;
@@ -118,7 +120,7 @@ void UCI::inputPosition(std::string input) {
                     }
                 } else {
                     MoveList<BLACK> moveList2(engine->position);
-                    for (Move legalMove : moveList2) {
+                    for (Move legalMove: moveList2) {
                         std::cout << "Black: " << legalMove << std::endl;
                         //move validation check
                         if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
@@ -132,21 +134,59 @@ void UCI::inputPosition(std::string input) {
             newGame = true;
         } else {
             move = new Move(result[result.size() - 1]);
+            if (result[result.size() - 1].length() == 5) {
+                //get entry of result
+                std::string flag = result[result.size() - 1].erase(0, 4);
+                //check for promotion and set flag
+                if (flag == "q") {
+                    std::cout << "Queen" << std::endl;
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_QUEEN);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PC_QUEEN);
+                } else if (flag == "r") {
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_ROOK);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PR_ROOK);
+                } else if (flag == "b") {
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_BISHOP);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PR_BISHOP);
+                } else if (flag == "n") {
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_KNIGHT);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PR_KNIGHT);
+                }
+
+            }
             if (engine->position.turn() == 0) {
-                MoveList<WHITE> moveList3(engine->position);
-                for (Move legalMove: moveList3) {
+                MoveList<WHITE> moveList(engine->position);
+                for (Move legalMove: moveList) {
                     //move validation check
                     if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
-                        //std::cout << legalMove;
+                        if (move->is_promotion() || move->is_promotion_capture()) {
+                            if (move->flags() == legalMove.flags()) {
+                                engine->position.play<WHITE>(legalMove);
+                                break;
+                            } else continue;
+                        }
                         engine->position.play<WHITE>(legalMove);
+                        break;
                     }
                 }
             } else {
-                MoveList<BLACK> moveList4(engine->position);
-                for (Move legalMove: moveList4) {
+                MoveList<BLACK> moveList(engine->position);
+                for (Move legalMove: moveList) {
+                    std::cout << legalMove << legalMove.flags() << std::endl;
                     //move validation check
                     if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
+                        if (move->is_promotion() || move->is_promotion_capture()) {
+                            if (move->flags() == legalMove.flags()) {
+                                engine->position.play<BLACK>(legalMove);
+                                break;
+                            } else continue;
+                        }
                         engine->position.play<BLACK>(legalMove);
+                        break;
                     }
                 }
             }
@@ -167,6 +207,9 @@ void UCI::inputPrint() {
     else std::cout << engine->evaluation() << std::endl;
     std::cout << "Side: " << engine->position.turn() << std::endl;
     std::cout << "Draw: " << engine->isDraw() << std::endl;
+    //engine->getCaptures();
+    engine->getMoves();
+    engine->info();
 
     /*MoveList<WHITE> moveList3(engine->position);
     for (Move legalMove: moveList3) {
@@ -176,4 +219,126 @@ void UCI::inputPrint() {
 
 
 
+}
+
+void UCI::test(std::string input) {
+    input.erase(0, 5);
+    std::cout << input << std::endl;
+    if (startsWith(input, "startpos")) {
+        input.erase(0, 9);
+        if (newGame) {
+            Position::set("8/k1P5/P2K2p1/8/6p1/6P1/7P/8 w - - 1 52 ", engine->position);
+            newGame = false;
+        }
+    } else if (startsWith(input, "fen")) {
+        input.erase(0, 4);
+        if (newGame) {
+            Position::set(input, engine->position);
+            newGame = false;
+        }
+    }
+
+    std::cout << input << std::endl;
+
+    if (startsWith(input, "moves")) {
+        //std::cout << engine->position;
+        input.erase(0, 6);
+        //split string at whitespaces
+        std::vector<std::string> result;
+        std::istringstream iss(input);
+        for (std::string s; iss >> s;)
+            result.push_back(s);
+        Move *move = nullptr;
+        if (false) {
+            for (auto &item: result) {
+                //if (engine->position.history[engine->position.ply()].epsq == )
+                std::cout << "LOOP" << item << std::endl;
+                move = new Move(item);
+                //generate MoveList for validation
+
+                if (engine->position.turn() == 0) {
+                    MoveList<WHITE> moveList1(engine->position);
+                    for (Move legalMove: moveList1) {
+                        //move validation check
+                        if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
+                            std::cout << "Input White: " << move->from() << move->to() << std::endl;
+                            engine->position.play<WHITE>(legalMove);
+                        }
+                    }
+                } else {
+                    MoveList<BLACK> moveList2(engine->position);
+                    for (Move legalMove: moveList2) {
+                        std::cout << "Black: " << legalMove << std::endl;
+                        //move validation check
+                        if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
+                            std::cout << "Input Black: " << move->from() << move->to() << std::endl;
+                            engine->position.play<BLACK>(legalMove);
+                        }
+                    }
+                }
+                move = nullptr;
+            }
+            newGame = true;
+        } else {
+            move = new Move(result[result.size() - 1]);
+            if (result[result.size() - 1].length() == 5) {
+                //get entry of result
+                std::string flag = result[result.size() - 1].erase(0, 4);
+                //check for promotion and set flag
+                if (flag == "q") {
+                    std::cout << "Queen" << std::endl;
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_QUEEN);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PC_QUEEN);
+                } else if (flag == "r") {
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_ROOK);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PR_ROOK);
+                } else if (flag == "b") {
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_BISHOP);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PR_BISHOP);
+                } else if (flag == "n") {
+                    if (engine->position.at(move->to()) == Piece::NO_PIECE)
+                        move = new Move(move->from(), move->to(), MoveFlags::PR_KNIGHT);
+                    else move = new Move(move->from(), move->to(), MoveFlags::PR_KNIGHT);
+                }
+
+            }
+            if (engine->position.turn() == 0) {
+                MoveList<WHITE> moveList(engine->position);
+                for (Move legalMove: moveList) {
+                    //move validation check
+                    if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
+                        if (move->is_promotion() || move->is_promotion_capture()) {
+                            if (move->flags() == legalMove.flags()) {
+                                engine->position.play<WHITE>(legalMove);
+                                break;
+                            } else continue;
+                        }
+                        engine->position.play<WHITE>(legalMove);
+                        break;
+                    }
+                }
+            } else {
+                MoveList<BLACK> moveList(engine->position);
+                for (Move legalMove: moveList) {
+                    std::cout << legalMove << legalMove.flags() << std::endl;
+                    //move validation check
+                    if (legalMove.from() == move->from() && legalMove.to() == move->to()) {
+                        if (move->is_promotion() || move->is_promotion_capture()) {
+                            if (move->flags() == legalMove.flags()) {
+                                engine->position.play<BLACK>(legalMove);
+                                break;
+                            } else continue;
+                        }
+                        engine->position.play<BLACK>(legalMove);
+                        break;
+                    }
+                }
+            }
+            move = new Move(result.back());
+        }
+        delete move;
+    }
 }

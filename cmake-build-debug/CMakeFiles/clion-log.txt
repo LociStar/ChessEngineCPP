@@ -1,4 +1,4 @@
-D:\Programms\Jetbrains\apps\CLion\ch-0\202.7319.72\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" C:\Users\LociStar\CLionProjects\ChessEngine
+C:\Users\LociStar\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.3345.126\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\LociStar\CLionProjects\ChessEngineCPP -B C:\Users\LociStar\CLionProjects\ChessEngineCPP\cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/LociStar/CLionProjects/ChessEngine/cmake-build-debug
+-- Build files have been written to: C:/Users/LociStar/CLionProjects/ChessEngineCPP/cmake-build-debug

@@ -5,7 +5,10 @@
 #ifndef CHESSENGINE_ENGINE_H
 #define CHESSENGINE_ENGINE_H
 
+#include <chrono>
 #include "src/position.h"
+#include "src/transpositionTable.h"
+#include "src/pvTable.h"
 
 class Engine {
 private:
@@ -14,6 +17,11 @@ public:
     Position position;
     Move bestMove;
     int counter;
+    int timeControl = 600000;
+    std::chrono::time_point<std::chrono::_V2::system_clock, std::chrono::duration<int64_t, std::ratio<1, 1000000000>>> start;
+
+    TranspositionTable tt = TranspositionTable();
+    PVTable pvTable = PVTable();
 
     int evaluation();
     //template<Color Us>
@@ -22,9 +30,14 @@ public:
     bool isCheckMate();
 
     template<Color Us>
-    int negamax(Position* p, int depth, int alpha, int beta, bool first);
+    int negamax(Position* pos, int depth, int alpha, int beta, bool first);
 
     int search();
+
+    void getCaptures();
+    void getMoves();
+
+    void info();
 
 private:
 
@@ -32,6 +45,10 @@ private:
     bool isInsufficientMaterial();
     bool isStaleMate();
 
+    template<Color Us>
+    int quiescenceSearch(Position *pos, int alpha, int beta, int depth);
+
+    std::vector<Move> getPVLine(Position &pos);
 };
 
 
